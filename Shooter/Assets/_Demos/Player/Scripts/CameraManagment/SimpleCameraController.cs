@@ -3,8 +3,7 @@ using UnityEngine;
 public class SimpleCameraController : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
-    [Space]
-    [SerializeField] private Vector3 _offset;
+    [Space] [SerializeField] private CameraSettings _settings;
 
     private Player _player;
 
@@ -15,7 +14,7 @@ public class SimpleCameraController : MonoBehaviour
 
     private void Update()
     {
-        var dirPosition = _player.transform.position + _offset;
+        var dirPosition = _player.transform.position + _settings.Offset;
         _camera.transform.position = dirPosition;
     }
 }

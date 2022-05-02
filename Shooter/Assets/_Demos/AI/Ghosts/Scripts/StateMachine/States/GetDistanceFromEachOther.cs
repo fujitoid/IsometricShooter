@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using System.Linq;
-using UnityEngine.AI;
 
 namespace Shooter.AI.Ghosts.Behaviour.States
 {
@@ -78,19 +77,6 @@ namespace Shooter.AI.Ghosts.Behaviour.States
             foreach (var point in orderedPoints)
             {
                 if (UnityEngine.AI.NavMesh.SamplePosition(point, out var hit, 1, UnityEngine.AI.NavMesh.AllAreas))
-                    return point;
-            }
-
-            return _agent.transform.position;
-        }
-
-        private Vector3 GetNearestPoint(Vector3[] points)
-        {
-            var orderedPoint = points.OrderBy(x => Vector3.Distance(_agent.transform.position, x));
-
-            foreach (var point in orderedPoint)
-            {
-                if (NavMesh.SamplePosition(point, out var hit, 1, NavMesh.AllAreas))
                     return point;
             }
 

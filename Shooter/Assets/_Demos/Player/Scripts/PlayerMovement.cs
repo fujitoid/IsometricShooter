@@ -85,10 +85,18 @@ public class PlayerMovement : MonoBehaviour
                 var y = _vertical.ReadValue<float>();
                 var tpDirection = new Vector3(x, 0, y);
                 var tpPostion = transform.position + tpDirection * _tpMultiplicator;
-                transform.position = tpPostion;
-                yield return new WaitForEndOfFrame();
-                _agent.ResetPath();
-                yield return new WaitForSeconds(1);
+
+                var prewSpeed = _agent.speed;
+                var prewAccel = _agent.acceleration;
+                _agent.speed = 1000;
+                _agent.acceleration = 1000;
+
+                _agent.SetDestination(tpPostion);
+
+                yield return new WaitForSeconds(.1f);
+
+                _agent.speed = prewSpeed;
+                _agent.acceleration = prewAccel;
             }
 
             yield return null;

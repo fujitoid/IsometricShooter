@@ -53,7 +53,7 @@ namespace Shooter.AI.Ghosts.Behaviour.States
             base.Exit();
 
             if(_attackRoutine != null)
-            _monoBehaviour.StopCoroutine(_attackRoutine);
+                _monoBehaviour.StopCoroutine(_attackRoutine);
         }
 
         protected override IEnumerator OnUpdate()
@@ -109,24 +109,6 @@ namespace Shooter.AI.Ghosts.Behaviour.States
             distances = orderedPoints.Select(x => Vector3.Distance(_agent.transform.position, x)).ToList();
 
             foreach (var point in orderedPoints)
-            {
-                if (NavMesh.SamplePosition(point, out var hit, 1, NavMesh.AllAreas))
-                {
-                    return point;
-                }
-            }
-
-            return _agent.transform.position;
-        }
-
-        private Vector3 GetRandomPoint()
-        {
-            var points = GetPoints();
-
-            var random = new System.Random();
-            var shaffeledPoints = points.OrderBy(x => random.Next());
-
-            foreach (var point in shaffeledPoints)
             {
                 if (NavMesh.SamplePosition(point, out var hit, 1, NavMesh.AllAreas))
                 {

@@ -1,6 +1,7 @@
 using Shooter.AI.Ghosts.Services;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -29,19 +30,35 @@ namespace Shooter.AI.Ghosts.Behaviour.States
             _attackContainer = attackContainer;
             return this;
         }
-
+        
         protected override IEnumerator OnUpdate()
         {
-            var directionRange = Random.Range(0f, 1f);
-            var direction = directionRange < 0.5 ? 1 : -1;
+            var randomDirection = Random.Range(0f, 1f);
 
-            var moveDirection = new Vector3(_dodgeDistance * direction, 0, 0);
-            var movePosition = _agent.transform.position + moveDirection;
-            _agent.transform.position = movePosition;
+            var nextDirection = randomDirection <= .5f
+                ? _agent.gameObject.transform.right * -1
+                : _agent.gameObject.transform.right;
 
-            yield return new WaitUntil(() => Vector3.Distance(_agent.transform.position, movePosition) == 0);
+            if (UnityEngine.AI.NavMesh.SamplePosition(nextDirection, out var hit, 1, UnityEngine.AI.NavMesh.AllAreas) == false)
+            {
+                nextDirection = _agent.transform.position;
+            }
 
+            var newPosition =
+                _agent.gameObject.transform.position + nextDirection * _dodgeDistance;
+
+            var prewSpeed = _agent.speed;
+            var prewAccel = _agent.acceleration;
+            _agent.speed = 1000;
+            _agent.acceleration = 1000;
+
+            _agent.SetDestination(newPosition);
+            
+            yield return new WaitUntil(() => _agent.gameObject.transform.position == newPosition);
             _attackContainer.IsUnderAttack = false;
+
+            _agent.speed = prewSpeed;
+            _agent.acceleration = prewAccel;
         }
     } 
 }

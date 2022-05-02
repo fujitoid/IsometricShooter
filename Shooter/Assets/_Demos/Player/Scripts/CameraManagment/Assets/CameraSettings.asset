@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d77064e555fc394f8da550437c5983f, type: 3}
-  m_Name: Demo
+  m_Script: {fileID: 11500000, guid: 4345c6f667891e4409e640e70a67ab1b, type: 3}
+  m_Name: CameraSettings
   m_EditorClassIdentifier: 
-  _sceneAssets:
-  - {fileID: 102900000, guid: 77c11e8ad3cde8543a1fcda41c387686, type: 3}
-  - {fileID: 102900000, guid: 728c0c33578ee4148bc96734b3ca8791, type: 3}
-  _type: 1
+  _offset: {x: 0, y: 14.6, z: -19.1}
