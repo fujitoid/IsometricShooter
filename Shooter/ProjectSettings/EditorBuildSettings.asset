@@ -9,12 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: d1c3109bdb54ad54c8a2b2838528e640
   - enabled: 1
-    path: Assets/Scenes/Start.unity
+    path: Assets/_Scenes/Start.unity
     guid: e98c77c9bb1000f428117d1716d8a679
   - enabled: 1
-    path: Assets/_Demos/AI/Ghosts/GhostsDemoScene.unity
+    path: Assets/_Scenes/Demo.unity
     guid: 728c0c33578ee4148bc96734b3ca8791
   - enabled: 1
-    path: Assets/_Demos/UI/HUD/HUD.unity
+    path: Assets/_UI/HUD/HUD.unity
     guid: 77c11e8ad3cde8543a1fcda41c387686
   m_configObjects: {}

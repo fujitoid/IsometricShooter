@@ -1,0 +1,142 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68b1bc5f3152b8b45a6bce31bb48b5e1, type: 3}
+  m_Name: PlayerInputContainer
+  m_EditorClassIdentifier: 
+  _horizontal:
+    m_Name: Horizontal
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 7ffb979d-864c-4dd1-86a5-01686e4cc66b
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 1D Axis
+      m_Id: 338426f9-6e4b-4d3c-9917-1ef9d60741e4
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Horizontal
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: c9274a3e-81ac-4bb9-b793-b5acd6e3e476
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Horizontal
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: fa804c82-38d8-4716-aa2a-ba93ae7ff64f
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Horizontal
+      m_Flags: 8
+  _vertical:
+    m_Name: Vertical
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 606dbbd5-7240-4211-9428-bb5c35eec640
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 1D Axis
+      m_Id: c6ba3c35-c25e-4c14-910a-c56a83f3deaa
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Vertical
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 5cbd3b2d-4aa0-4948-ad7d-83037b497c78
+      m_Path: <Keyboard>/s
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Vertical
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: dbff7a6c-0d26-406e-a38b-50f2f892cfcb
+      m_Path: <Keyboard>/w
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Vertical
+      m_Flags: 8
+  _coursor:
+    m_Name: Coursor
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 01095266-7d32-4efe-90ef-1e7597d0b043
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: cd62fc77-a133-49f7-b924-a3f7d7441a89
+      m_Path: <Mouse>/position
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Coursor
+      m_Flags: 0
+  _tp:
+    m_Name: Tp
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: cd37c54a-e902-422f-8677-1fb007fa5766
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: a28b037f-f869-452b-a979-ad7f444c9b30
+      m_Path: <Keyboard>/shift
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Tp
+      m_Flags: 0
+  _shoot:
+    m_Name: Shoot
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: b2b6ca08-bf6a-42fa-8cea-546e06a8bf5c
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 4aa4adee-b810-4f26-a564-0897effb6f58
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Shoot
+      m_Flags: 0
+  _dropGranate:
+    m_Name: Drop Granate
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 29eebabb-b111-4c6f-8ac6-7e2471783f76
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 7a08562f-78fe-4b48-ac6a-e06b9310b5cf
+      m_Path: <Keyboard>/g
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Drop Granate
+      m_Flags: 0
