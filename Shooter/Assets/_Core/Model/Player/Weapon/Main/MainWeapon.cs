@@ -23,5 +23,29 @@ namespace Shooter.Core.Model.Player.Weapone
             _modules = new List<ModuleData>();
             _data = new MainWeaponData();
         }
+
+        internal MainWeapon SetId(int id)
+        {
+            _id = id;
+            return this;
+        }
+
+        internal MainWeapon SetType(WeaponeType type)
+        {
+            _type = type;
+            return this;
+        }
+
+        internal MainWeapon SetModules(params ModuleData[] modules)
+        {
+            _modules.AddRange(modules);
+            return this;
+        }
+
+        internal MainWeapon SetData(MainWeaponData data)
+        {
+            _data = data;
+            return this;
+        }
     }
 }

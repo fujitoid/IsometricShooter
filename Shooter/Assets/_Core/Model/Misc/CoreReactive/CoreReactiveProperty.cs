@@ -1,7 +1,7 @@
 using System;
 using Newtonsoft.Json;
 
-namespace Shooter.Core.Model.ReactiveProperty
+namespace Shooter.Core.Model.Misc.CoreReactive
 {
     [Serializable]
     public class CoreReactiveProperty<T>
@@ -19,13 +19,13 @@ namespace Shooter.Core.Model.ReactiveProperty
             }
             internal set
             {
-                OnValueChanged?.Invoke(value);
                 _value = value;
+                OnValueChanged?.Invoke(value);
             }
         }
         
         [JsonConstructor]
-        public CoreReactiveProperty(T value)
+        public CoreReactiveProperty()
         {
             
         }

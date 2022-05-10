@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json;
-using Shooter.Core.Model.Player.Weapone;
-using Shooter.Core.Model.ReactiveProperty;
+using Shooter.Core.Model.Player.State;
 
 namespace Shooter.Core.Model.Player
 {
@@ -9,23 +8,18 @@ namespace Shooter.Core.Model.Player
     public class Player
     {
         [JsonProperty] private string _name;
-        [JsonProperty] private CoreReactiveProperty<float> _health;
-        [JsonProperty] private CoreReactiveProperty<int> _money;
+        [JsonProperty] private PlayerState _state;
 
-        [JsonProperty] private CoreReactiveProperty<MainWeapon> _weapon;
-        
-        [JsonIgnore] private string Name => _name;
-        [JsonIgnore] private CoreReactiveProperty<float> Health => _health;
-        [JsonIgnore] private CoreReactiveProperty<int> Money => _money;
+        [JsonProperty] private Inventory.Inventory _inventory;
 
-        [JsonIgnore] private CoreReactiveProperty<MainWeapon> Weapon => _weapon;
+        [JsonIgnore] public PlayerState State => _state;
+        [JsonIgnore] public Inventory.Inventory Inventory => _inventory;
 
         [JsonConstructor]
         public Player()
         {
-            _health = new CoreReactiveProperty<float>(0);
-            _money = new CoreReactiveProperty<int>(0);
-            _weapon = new CoreReactiveProperty<MainWeapon>(new MainWeapon());
+            _inventory = new Inventory.Inventory();
+            _state = new PlayerState();
         }
 
         internal Player SetName(string name)
