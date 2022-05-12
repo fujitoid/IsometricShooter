@@ -1,8 +1,8 @@
 {
-    "name": "Core",
+    "name": "Utils.SceneManagment",
     "rootNamespace": "",
     "references": [
-        "Unitls.SingletoneMonobehaviour"
+        "GUID:d2ba93d56669ef44aad4b4d30d972ab2"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

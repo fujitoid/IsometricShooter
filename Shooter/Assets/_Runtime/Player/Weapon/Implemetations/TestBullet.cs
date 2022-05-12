@@ -1,25 +1,31 @@
 using Shooter.AI.Context;
+using Shooter.Core.Model.Player.Weapone.Bullet;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TestBullet : MonoBehaviour
 {
     [SerializeField] private Rigidbody _rigidbody;
-    [Space]
-    [SerializeField] private float _speed;
-    [SerializeField] private float _damage;
+
+    private Vector3 _startPoint;
+    private Bullet _bullet;
+
+    public void Construct(Bullet bullet, Vector3 startPoint)
+    {
+        _bullet = bullet;
+        _startPoint = startPoint;
+    }
 
     public void OnCreate()
     {
-        _rigidbody.AddForce(transform.forward * _speed, ForceMode.VelocityChange);
+        _rigidbody.AddForce(transform.forward * _bullet.Speed, ForceMode.VelocityChange);
 
         StartCoroutine(LifeCycleRoutine());
     }
 
     private IEnumerator LifeCycleRoutine()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitUntil(() => Vector3.Distance(_startPoint, transform.position) >= _bullet.Distance);
         Destroy(this.gameObject);
     }
 
@@ -29,7 +35,7 @@ public class TestBullet : MonoBehaviour
 
         if(enemy != null)
         {
-            enemy.SetDamage(_damage);
+            enemy.SetDamage(_bullet.Damage);
             Destroy(this.gameObject);
         }
     }

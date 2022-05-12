@@ -1,8 +1,12 @@
 {
-    "name": "Core",
+    "name": "Runtime",
     "rootNamespace": "",
     "references": [
-        "Unitls.SingletoneMonobehaviour"
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:d2ba93d56669ef44aad4b4d30d972ab2",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:0fe2f6ba96ca3b84281daea17547b3f8",
+        "GUID:b936e9815d65b55498e294cec299bbbf"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

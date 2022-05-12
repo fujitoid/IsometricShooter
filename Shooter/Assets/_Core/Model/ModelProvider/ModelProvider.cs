@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
+using Shooter.Core.Controllers.Weapon;
 using UnityEngine;
 
-public class ModelProvider : MonoBehaviour
+namespace Shooter.Core.Model.ModelProvider
 {
-    // Start is called before the first frame update
-    void Start()
+    public class ModelProvider : SingletoneMonoBehavior<ModelProvider>
     {
-        
-    }
+        [SerializeField] private MainWeaponController _mainWeaponController;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        protected override void Initialization()
+        {
+            base.Initialization();
+            _mainWeaponController.CreateMainWeaponTest();
+        }
+    } 
 }
