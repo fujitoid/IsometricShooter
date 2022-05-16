@@ -3,7 +3,7 @@ using Shooter.AI.Ghosts.Behaviour;
 using Shooter.AI.Ghosts.Behaviour.States;
 using Shooter.AI.Ghosts.Services;
 using Shooter.AI.Ghosts.Weapon.Distance.Streight;
-using Shooter.UI.Utils;
+using Shooter.UI.Runtime;
 using System;
 using System.Linq;
 using UnityEngine;

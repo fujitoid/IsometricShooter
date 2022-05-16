@@ -23,7 +23,7 @@ namespace Shooter.Core.Controllers.Weapon
                 .SetScatter(1)
                 .SetShootingSpeed(.5f)
                 .SetCurrentBulletsCount(999)
-                .SetOverhotPercent(.25f)
+                .SetOverhotPercent(.5f)
                 .SetOverhotFromShoot(3f)
                 .SetCurrentOverhot(0);
             _testWeapom = new MainWeapon()
@@ -54,7 +54,7 @@ namespace Shooter.Core.Controllers.Weapon
 
         public void UpdateOverhot(MainWeapon mainWeapon, float decriment)
         {
-            if (mainWeapon.Data.CurrentOverhot.Value <= 0)
+            if (mainWeapon.Data.CurrentOverhot.Value <= 0.0066)
             {
                 mainWeapon.Data.SetCanShoot(true);
                 return;

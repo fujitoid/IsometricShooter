@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +6,7 @@ namespace Shooter.UI.HUD
 {
     public class HealthBar : HUDBehaviour
     {
-        [SerializeField] private Image _fill;
+        [SerializeField] private Slider _slider;
         [SerializeField] private TextMeshProUGUI _value;
 
         private float _currentHelth;
@@ -18,7 +16,7 @@ namespace Shooter.UI.HUD
         {
             _maxHealth = _currentHelth = health;
 
-            _fill.fillAmount = _currentHelth / _maxHealth;
+            _slider.value = _currentHelth / _maxHealth;
             _value.text = GetValuePercent();
         }
 
@@ -35,7 +33,7 @@ namespace Shooter.UI.HUD
         public void SetNewHealth(float health)
         {
             _currentHelth = health;
-            _fill.fillAmount = _currentHelth / _maxHealth;
+            _slider.value = _currentHelth / _maxHealth;
             _value.text = GetValuePercent();
         }
 

@@ -1,4 +1,5 @@
 using System.Collections;
+using DG.Tweening;
 using Shooter.Core.Controllers.Weapon;
 using Shooter.Core.Model.Player.Weapone;
 using UnityEngine;
@@ -13,6 +14,8 @@ public class WeaponController : MonoBehaviour
     private Coroutine _shootRoutine;
     private Coroutine _reloadRoutine;
     private Coroutine _overhotRoutine;
+
+    private Sequence _overhotSequence;
 
     private bool _isShootHolded = false;
     private bool _isGranageHolded = false;
@@ -60,9 +63,6 @@ public class WeaponController : MonoBehaviour
     {
         while (_isGranageHolded == false && _isShootHolded)
         {
-            if (_reloadRoutine != null)
-                yield return _reloadRoutine;
-
             if (_weaponController.TryShoot(_weaponController.TestWeapon))
             {
                 _testWeapon.Shoot();
@@ -72,6 +72,9 @@ public class WeaponController : MonoBehaviour
 
                 _reloadRoutine = StartCoroutine(RealoadRoutine(_weaponController.TestWeapon));
             }
+
+            if (_reloadRoutine != null)
+                yield return _reloadRoutine;
 
             yield return null;
         }
@@ -100,13 +103,14 @@ public class WeaponController : MonoBehaviour
             yield break;
 
         var coldTime = currentOverhot / _weaponController.TestWeapon.Data.OverhotPercent * _weaponController.TestWeapon.Data.OverhotFromShoot;
-        var dicrement = currentOverhot * Time.deltaTime;
+        var decriment = currentOverhot / coldTime * Time.fixedDeltaTime;
 
-        while(coldTime > 0)
+        while (coldTime > 0)
         {
-            coldTime -= Time.deltaTime;
-            _weaponController.UpdateOverhot(_weaponController.TestWeapon, dicrement);
-            yield return new WaitForSeconds(Time.deltaTime);
+            coldTime -= Time.fixedDeltaTime;
+
+            _weaponController.UpdateOverhot(_weaponController.TestWeapon, decriment);
+            yield return new WaitForSeconds(Time.fixedDeltaTime);
         }
     }
 }

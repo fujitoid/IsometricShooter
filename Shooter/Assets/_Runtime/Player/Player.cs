@@ -1,3 +1,4 @@
+using Shooter.UI.Core;
 using Shooter.UI.HUD;
 using UnityEngine;
 
@@ -12,12 +13,12 @@ public class Player : SingletoneMonoBehavior<Player>
     protected override void Initialization()
     {
         base.Initialization();
-        HUD.Instance.HealthBar.Construct(_health);
+        UIProvider.Instance.HUD.HealthBar.SetNewHealth(_health);
     }
 
     public void SetDamage(float damage)
     {
         _health -= damage;
-        HUD.Instance.HealthBar.SetNewHealth(_health);
+        UIProvider.Instance.HUD.HealthBar.SetNewHealth(_health);
     }
 }

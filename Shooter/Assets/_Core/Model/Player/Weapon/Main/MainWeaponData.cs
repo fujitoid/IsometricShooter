@@ -83,7 +83,9 @@ namespace Shooter.Core.Model.Player.Weapone
 
         internal MainWeaponData SetCurrentOverhot(float value)
         {
-            _currentOverhotValue.Value = value;
+            var clamped = Math.Clamp(value, 0, 1);
+
+            _currentOverhotValue.Value = clamped;
             return this;
         }
     }

@@ -2,12 +2,12 @@ using UnityEngine;
 
 namespace Shooter.UI.HUD
 {
-    public class HUD : SingletoneMonoBehavior<HUD>
+    public class HUD : MonoBehaviour
     {
         [SerializeField] private HealthBar _healthBar;
-        [SerializeField] private OverhotBar _overhotBar;
+        [SerializeField] private WeaponScreen _overhotBar;
 
         public HealthBar HealthBar => _healthBar;
-        public OverhotBar OverhotBar => _overhotBar;
+        public WeaponScreen OverhotBar => _overhotBar;
     } 
 }

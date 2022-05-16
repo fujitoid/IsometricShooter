@@ -2,7 +2,7 @@ using Shooter.AI.Context;
 using Shooter.AI.Ghosts.Behaviour;
 using Shooter.AI.Ghosts.Behaviour.States;
 using Shooter.AI.Ghosts.Services;
-using Shooter.UI.Utils;
+using Shooter.UI.Runtime;
 using System;
 using UnityEngine;
 using UnityEngine.AI;
