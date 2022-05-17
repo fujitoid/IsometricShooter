@@ -1,18 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
+using Shooter.Core.Model.Player.Weapone;
 using UnityEngine;
 
-public class GranateController : MonoBehaviour
+namespace Shooter.Core.Controllers.Weapon
 {
-    // Start is called before the first frame update
-    void Start()
+    public class GranateController : ScriptableObject
     {
-        
-    }
+        private SimpleGranate _simpleGranate;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        public SimpleGranate SimpleGranate => _simpleGranate;
+
+        public void CreateSimpleGranate()
+        {
+            _simpleGranate = (SimpleGranate) new SimpleGranate()
+                .SetExplodeTime(3)
+                .SetCount(999)
+                .SetDamage(100)
+                .SetDistance(15)
+                .SetRadius(5)
+                .SetReloadTime(1);
+        }
+
+        public bool TryDropGranate(GranateBase granate)
+        {
+            if (granate.Count <= 0)
+                return false;
+
+            granate.SetCount(_simpleGranate.Count - 1);
+
+            return true;
+        }
+    } 
 }

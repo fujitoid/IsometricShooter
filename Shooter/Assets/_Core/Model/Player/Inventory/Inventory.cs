@@ -12,13 +12,13 @@ namespace Shooter.Core.Model.Player.Inventory
         [JsonProperty] private CoreReactiveProperty<int> _money;
 
         [JsonProperty] private CoreReactiveProperty<MainWeapon> _weapon;
-        [JsonProperty] private CoreReactiveList<Granate> _granats;
+        [JsonProperty] private CoreReactiveList<GranateBase> _granats;
         [JsonProperty] private CoreReactiveList<Module> _modules;
         
         [JsonIgnore] public CoreReactiveProperty<int> Money => _money;
 
         [JsonIgnore] public CoreReactiveProperty<MainWeapon> Weapon => _weapon;
-        [JsonIgnore] public CoreReactiveList<Granate> Granats => _granats;
+        [JsonIgnore] public CoreReactiveList<GranateBase> Granats => _granats;
         [JsonIgnore] public CoreReactiveList<Module> Modules => _modules;
 
         [JsonConstructor]
@@ -27,7 +27,7 @@ namespace Shooter.Core.Model.Player.Inventory
             _money = new CoreReactiveProperty<int>();
             
             _weapon = new CoreReactiveProperty<MainWeapon>();
-            _granats = new CoreReactiveList<Granate>();
+            _granats = new CoreReactiveList<GranateBase>();
             _modules = new CoreReactiveList<Module>();
         }
     }

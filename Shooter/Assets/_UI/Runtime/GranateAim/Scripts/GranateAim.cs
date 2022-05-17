@@ -12,22 +12,14 @@ namespace Shooter.UI.Runtime
         [SerializeField] private Transform _toTarget;
 
         private Coroutine _coroutine;
-        private bool _isHolded = false;
+        private IInputReciver _inputReciver;
 
-        private void OnEnable()
+        public void SetContext(IInputReciver inputReciver)
         {
-            UIProvider.Instance.InputsContainer.CallGranateAim.Enable();
-            UIProvider.Instance.InputsContainer.CallGranateAim.performed += x => DrawAim();
-            UIProvider.Instance.InputsContainer.CallGranateAim.started += x => _isHolded = true;
-            UIProvider.Instance.InputsContainer.CallGranateAim.canceled += x => _isHolded = false;
+            _inputReciver = inputReciver;
         }
 
-        private void OnDisable()
-        {
-            UIProvider.Instance.InputsContainer.CallGranateAim.Disable();
-        }
-
-        private void DrawAim()
+        public void DrawAim()
         {
             if (_coroutine != null)
                 StopCoroutine(_coroutine);
@@ -44,7 +36,7 @@ namespace Shooter.UI.Runtime
                 prefabs[i] = Instantiate(_prefab, transform);
             }
 
-            while(_isHolded)
+            while(_inputReciver.IsHolded())
             {
                 var centerPoint = (_fromTarget.position + _toTarget.position) * .5f;
                 centerPoint -= Vector3.up;
