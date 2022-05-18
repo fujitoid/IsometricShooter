@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 397545357}
   - component: {fileID: 397545356}
   - component: {fileID: 397545355}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -620,6 +620,9 @@ MonoBehaviour:
   _offset: {x: 0, y: 0.1, z: 0}
   _playerCamera: {fileID: 695347366}
   _icon: {fileID: 101191403}
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &606175499
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,8 +792,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weaponController: {fileID: 11400000, guid: a904b1b7bb7cb0c4e9af8384d54197f7, type: 2}
   _testWeapon: {fileID: 1762504812}
-  _granateAim: {fileID: 0}
-  _granateDroper: {fileID: 0}
+  _granateAim: {fileID: 1683716399}
+  _granateDroper: {fileID: 812506684}
 --- !u!1 &620860908
 GameObject:
   m_ObjectHideFlags: 0
@@ -995,6 +998,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 812506683}
+  - component: {fileID: 812506684}
   m_Layer: 0
   m_Name: GranateDroper
   m_TagString: Untagged
@@ -1017,6 +1021,22 @@ Transform:
   m_Father: {fileID: 606175506}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &812506684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812506682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ce48eaed4097c7449630ffb7107462d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _granateController: {fileID: 11400000, guid: fa1a9cb27553ccc42895e38a97d71f57, type: 2}
+  _finishPoint: {fileID: 423084897}
+  _flySpeed: 3
+  _simpleGranate: {fileID: 8967477427782877582, guid: c9fde2b5c58f10e47a8ac1d85f5fe9d5, type: 3}
 --- !u!1 &960489877
 GameObject:
   m_ObjectHideFlags: 0
@@ -1286,6 +1306,7 @@ MonoBehaviour:
   _prefab: {fileID: 3730455686695961606, guid: ed0c9c0b8f344f640834faf233add790, type: 3}
   _fromTarget: {fileID: 606175506}
   _toTarget: {fileID: 423084897}
+  _granateController: {fileID: 11400000, guid: fa1a9cb27553ccc42895e38a97d71f57, type: 2}
 --- !u!4 &1683716400
 Transform:
   m_ObjectHideFlags: 0

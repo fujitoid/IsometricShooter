@@ -10,6 +10,8 @@ namespace Shooter.UI.Runtime
         [SerializeField] private Camera _playerCamera;
         [Space]
         [SerializeField] private Image _icon;
+        [Space]
+        [SerializeField] private LayerMask _layerMask;
 
         private void OnEnable()
         {
@@ -26,7 +28,7 @@ namespace Shooter.UI.Runtime
             var ray = _playerCamera
                 .ScreenPointToRay(UIProvider.Instance.InputsContainer.MousePosition.ReadValue<Vector2>());
 
-            if(Physics.Raycast(ray, out var hit))
+            if(Physics.Raycast(ray, out var hit, 100, _layerMask))
             {
                 this.transform.position = hit.point + _offset;
             }

@@ -14,7 +14,7 @@ namespace Shooter.Runtime.Weapone.Granate
         [Space]
         [SerializeField] private SimpleGranate _simpleGranate;
 
-        private Coroutine _dropRoutine;
+        private List<Coroutine> _dropRoutines = new List<Coroutine>();
         private Coroutine _reloadRoutine;
 
         public void Drop()
@@ -22,10 +22,7 @@ namespace Shooter.Runtime.Weapone.Granate
             if (_reloadRoutine != null)
                 return;
 
-            if (_dropRoutine != null)
-                StopCoroutine(_dropRoutine);
-
-            _dropRoutine = StartCoroutine(DropRoutine());
+            _dropRoutines.Add(StartCoroutine(DropRoutine()));
         }
 
         private IEnumerator ReloadRoutine()
@@ -36,16 +33,19 @@ namespace Shooter.Runtime.Weapone.Granate
 
         private IEnumerator DropRoutine()
         {
-            if (_granateController.TryDropGranate(_granateController.SimpleGranate) == false)
-                yield break;
-
-            var granate = Instantiate(_simpleGranate, this.transform.position, Quaternion.identity, this.transform);
-            granate.Construct(_granateController.SimpleGranate);
-
             var centrePoint = (this.transform.position + _finishPoint.position) * .5f;
             centrePoint -= Vector3.up;
             var newStartPoint = this.transform.position - centrePoint;
             var newEndPoint = _finishPoint.position - centrePoint;
+
+            if (Vector3.Distance(newStartPoint, newEndPoint) > _granateController.SimpleGranate.Distance)
+                yield break;
+
+            if (_granateController.TryDropGranate(_granateController.SimpleGranate) == false)
+                yield break;
+
+            var granate = Instantiate(_simpleGranate, this.transform.position, Quaternion.identity);
+            granate.Construct(_granateController.SimpleGranate);
 
             var f = 0f;
 
@@ -60,7 +60,11 @@ namespace Shooter.Runtime.Weapone.Granate
 
             yield return new WaitForSeconds(_granateController.SimpleGranate.ExplodeTime);
 
-            _simpleGranate.Explode();
+            granate.Explode();
+
+            yield return null;
+
+            Destroy(granate.gameObject);
         }
     } 
 }

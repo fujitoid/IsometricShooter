@@ -1,3 +1,4 @@
+using Shooter.Core.Controllers.Weapon;
 using Shooter.UI.Core;
 using System.Collections;
 using UnityEngine;
@@ -10,6 +11,8 @@ namespace Shooter.UI.Runtime
         [Space]
         [SerializeField] private Transform _fromTarget;
         [SerializeField] private Transform _toTarget;
+        [Space]
+        [SerializeField] private GranateController _granateController;
 
         private Coroutine _coroutine;
         private IInputReciver _inputReciver;
@@ -42,6 +45,12 @@ namespace Shooter.UI.Runtime
                 centerPoint -= Vector3.up;
                 var newStartPoint = _fromTarget.position - centerPoint;
                 var newEndPoint = _toTarget.position - centerPoint;
+
+                if (Vector3.Distance(newStartPoint, newEndPoint) > _granateController.SimpleGranate.Distance)
+                {
+                    yield return null;
+                    continue;
+                }
 
                 for(int i = 0; i < 10; i++)
                 {

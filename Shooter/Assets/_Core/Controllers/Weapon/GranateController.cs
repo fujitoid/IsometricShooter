@@ -16,7 +16,7 @@ namespace Shooter.Core.Controllers.Weapon
                 .SetCount(999)
                 .SetDamage(100)
                 .SetDistance(15)
-                .SetRadius(5)
+                .SetRadius(50)
                 .SetReloadTime(1);
         }
 

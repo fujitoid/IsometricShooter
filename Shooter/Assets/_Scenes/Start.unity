@@ -245,6 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainWeaponController: {fileID: 11400000, guid: a904b1b7bb7cb0c4e9af8384d54197f7, type: 2}
+  _granateController: {fileID: 11400000, guid: fa1a9cb27553ccc42895e38a97d71f57, type: 2}
 --- !u!4 &2081352486
 Transform:
   m_ObjectHideFlags: 0

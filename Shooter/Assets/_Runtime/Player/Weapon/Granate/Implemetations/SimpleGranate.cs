@@ -14,6 +14,9 @@ namespace Shooter.Runtime.Weapone.Granate
         public void Construct(Core.Model.Player.Weapone.SimpleGranate simpleGranate)
         {
             _modelGranate = simpleGranate;
+
+            var sphereCollider = gameObject.GetComponent<SphereCollider>();
+            sphereCollider.radius = _modelGranate.Radius;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -36,8 +39,10 @@ namespace Shooter.Runtime.Weapone.Granate
         {
             foreach(var enemy in _enemies)
             {
-                enemy.SetDamage(_modelGranate.Damage);
+                enemy?.SetDamage(_modelGranate.Damage);
             }
+
+            Debug.Log("Explode");
         }
     }
 }
