@@ -1,13 +1,16 @@
+using DG.Tweening;
+using Shooter.Runtime.Animations.Context;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IAnimatorInputReciver
 {
     [Space, Header("References")]
     [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private Camera _playerCamera;
+    [SerializeField] private Transform _lookAtTarget;
     [Header("Settings")]
     [SerializeField] private float _tpMultiplicator;
 
@@ -60,14 +63,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void RotateToPoint()
     {
-        var ray = _playerCamera
-            .ScreenPointToRay(Player.Instance.PlayerInput.Coursor.ReadValue<Vector2>());
-
-        if (Physics.Raycast(ray, out var hit))
-        {
-            var lookPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
-            transform.LookAt(lookPosition);
-        }
+        var lookAtPosition = new Vector3(_lookAtTarget.position.x, transform.position.y, _lookAtTarget.position.z);
+        transform.DOLookAt(lookAtPosition, 1f);
     }
 
     private IEnumerator SpeedUpRoutine()
@@ -96,5 +93,15 @@ public class PlayerMovement : MonoBehaviour
 
             yield return null;
         }
+    }
+
+    public Vector3 GetVelocity() => _agent.velocity;
+
+    public float GetMaxSpeed() => _agent.speed;
+
+    public float GetAngleBtwRightNTarget()
+    {
+        var disatnceBetweenLookAtTarget = Vector3.Distance(_lookAtTarget.position, transform.position);
+        return Vector3.Angle(transform.right * disatnceBetweenLookAtTarget, _lookAtTarget.position - transform.position);
     }
 }

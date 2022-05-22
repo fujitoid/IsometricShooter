@@ -39,10 +39,11 @@ namespace Shooter.Runtime.Weapone.Granate
         {
             foreach(var enemy in _enemies)
             {
+                if (enemy == null)
+                    continue;
+
                 enemy?.SetDamage(_modelGranate.Damage);
             }
-
-            Debug.Log("Explode");
         }
     }
 }

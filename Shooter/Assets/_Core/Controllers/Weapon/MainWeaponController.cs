@@ -14,17 +14,17 @@ namespace Shooter.Core.Controllers.Weapon
         {
             var bullet = new Bullet()
                 .SetDamage(20)
-                .SetSpeed(20)
+                .SetSpeed(50)
                 .SetDistance(20);
 
             var data = new MainWeaponData()
                 .SetCanShoot(true)
                 .SetBullet(bullet)
                 .SetScatter(1)
-                .SetShootingSpeed(.5f)
+                .SetShootingSpeed(.01f)
                 .SetCurrentBulletsCount(999)
-                .SetOverhotPercent(.5f)
-                .SetOverhotFromShoot(3f)
+                .SetOverhotPercent(.05f)
+                .SetOverhotFromShoot(.3f)
                 .SetCurrentOverhot(0);
             _testWeapom = new MainWeapon()
                 .SetId(1)
