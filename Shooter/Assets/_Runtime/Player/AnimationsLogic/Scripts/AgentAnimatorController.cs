@@ -26,31 +26,38 @@ namespace Shooter.Runtime.Animations
 
         private void FixedUpdate()
         {
-            if (_inputReciver.GetVelocity().magnitude <= .1f)
+            if ((_inputReciver.GetVelocity()/_inputReciver.GetMaxSpeed()).magnitude < 0.01f)
                 PlayRotateAnimation();
             else
                 PlayMoveAnimation();
 
-            Debug.Log("Speed: " + _inputReciver.GetVelocity().magnitude.ToString());
-            Debug.Log("Angle: " + _inputReciver.GetAngleBtwRightNTarget().ToString());
+            Debug.Log(_inputReciver.GetVelocity().magnitude);
         }
 
         private void PlayRotateAnimation()
         {
-            if (_inputReciver.GetAngleBtwRightNTarget() > 91 || _inputReciver.GetAngleBtwRightNTarget() < 89)
+            if (_inputReciver.GetAngleBtwRightNTarget() > 91)
             {
-                _animator.SetFloat("Forward", _inputReciver.GetAngleBtwRightNTarget() / 180, .1f, Time.deltaTime);
-                _animator.SetFloat("Turn", _inputReciver.GetAngleBtwRightNTarget() / 180, .1f, Time.deltaTime);
+                _animator.SetBool("IsLeft", true);
+                _animator.SetBool("IsRight", false);
+            }
+            else if (_inputReciver.GetAngleBtwRightNTarget() < 89)
+            {
+                _animator.SetBool("IsRight", true);
+                _animator.SetBool("IsLeft", false);
             }
             else
             {
-                _animator.SetFloat("Forward", 0, .1f, Time.deltaTime);
-                _animator.SetFloat("Turn", 0, .1f, Time.deltaTime);
+                _animator.SetBool("IsRight", false);
+                _animator.SetBool("IsLeft", false);
             }
         }
 
         private void PlayMoveAnimation()
         {
+            _animator.SetBool("IsRight", false);
+            _animator.SetBool("IsLeft", false);
+
             var coefVector = _inputReciver.GetVelocity() / _inputReciver.GetMaxSpeed();
 
             var horizontal = coefVector.x;
