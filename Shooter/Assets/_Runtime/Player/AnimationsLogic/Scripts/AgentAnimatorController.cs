@@ -6,6 +6,8 @@ namespace Shooter.Runtime.Animations
 {
     public class AgentAnimatorController : MonoBehaviour
     {
+        [SerializeField] private float _speed = 2f;
+        [Space]
         [SerializeField] private Animator _animator;
         [SerializeField] private Camera _camera;
         [SerializeField] private GameObject _target;
@@ -26,16 +28,19 @@ namespace Shooter.Runtime.Animations
 
         private void FixedUpdate()
         {
-            if ((_inputReciver.GetVelocity()/_inputReciver.GetMaxSpeed()).magnitude < 0.01f)
-                PlayRotateAnimation();
-            else
+            if ((_inputReciver.GetVelocity().magnitude > 0))
                 PlayMoveAnimation();
+            else
+                PlayRotateAnimation();
 
             Debug.Log(_inputReciver.GetVelocity().magnitude);
         }
 
         private void PlayRotateAnimation()
         {
+            _animator.SetFloat("Forward", 0, .1f, Time.deltaTime * _speed);
+            _animator.SetFloat("Turn", 0, .1f, Time.deltaTime * _speed);
+
             if (_inputReciver.GetAngleBtwRightNTarget() > 91)
             {
                 _animator.SetBool("IsLeft", true);
@@ -82,8 +87,8 @@ namespace Shooter.Runtime.Animations
             _turnAmount = localMove.x;
             _forwardAmount = localMove.z;
 
-            _animator.SetFloat("Forward", _forwardAmount, .1f, Time.deltaTime);
-            _animator.SetFloat("Turn", _turnAmount, .1f, Time.deltaTime);
+            _animator.SetFloat("Forward", _forwardAmount, .1f, Time.deltaTime * _speed);
+            _animator.SetFloat("Turn", _turnAmount, .1f, Time.deltaTime * _speed);
         }
     }
 }
