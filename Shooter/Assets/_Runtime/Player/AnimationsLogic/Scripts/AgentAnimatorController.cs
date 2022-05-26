@@ -4,8 +4,15 @@ using UnityEngine.AI;
 
 namespace Shooter.Runtime.Animations
 {
+    public enum AnimateType
+    {
+        Player = 1,
+        Enemy = 2,
+    }
+
     public class AgentAnimatorController : MonoBehaviour
     {
+        [SerializeField] private AnimateType _animateType;
         [SerializeField] private float _speed = 2f;
         [Space]
         [SerializeField] private Animator _animator;
@@ -19,11 +26,20 @@ namespace Shooter.Runtime.Animations
         private float _forwardAmount;
         private float _turnAmount;
 
+        private bool _isReadyForDropingGranate = false;
+
         private IAnimatorInputReciver _inputReciver;
 
         private void Awake()
         {
             _inputReciver = _target.gameObject.GetComponent<IAnimatorInputReciver>();
+
+            if(_animateType == AnimateType.Player)
+            {
+                Player.Instance.PlayerInput.DropGranate.started += x => _isReadyForDropingGranate = true;
+                Player.Instance.PlayerInput.DropGranate.canceled += x => _isReadyForDropingGranate = false;
+                Player.Instance.PlayerInput.Shoot.performed += x => ThrowGranate();
+            }
         }
 
         private void FixedUpdate()
@@ -89,6 +105,15 @@ namespace Shooter.Runtime.Animations
 
             _animator.SetFloat("Forward", _forwardAmount, .1f, Time.deltaTime * _speed);
             _animator.SetFloat("Turn", _turnAmount, .1f, Time.deltaTime * _speed);
+        }
+
+        private void ThrowGranate()
+        {
+            if (_isReadyForDropingGranate == false)
+                return;
+
+            _animator.ResetTrigger("ThrowGranate");
+            _animator.SetTrigger("ThrowGranate");
         }
     }
 }

@@ -768,6 +768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f342999919c7f14db324c673420ff21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animateType: 1
   _speed: 2
   _animator: {fileID: 3756533394914778328}
   _camera: {fileID: 695347366}
@@ -1014,6 +1015,7 @@ MonoBehaviour:
   _granateController: {fileID: 11400000, guid: fa1a9cb27553ccc42895e38a97d71f57, type: 2}
   _finishPoint: {fileID: 423084897}
   _flySpeed: 3
+  _delayBeforeDrop: 1.115
   _simpleGranate: {fileID: 8967477427782877582, guid: c9fde2b5c58f10e47a8ac1d85f5fe9d5, type: 3}
 --- !u!1 &960489877
 GameObject:
@@ -1045,6 +1047,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1525612004}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1119827058
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1119827060}
+  - component: {fileID: 1119827059}
+  m_Layer: 0
+  m_Name: Sonar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1119827059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119827058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d69754a57dd27f0468e06f91b44ab9f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1119827060
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119827058}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.39, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1227466990
 GameObject:
@@ -2855,7 +2901,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &3756533395053051701
 GameObject:
   m_ObjectHideFlags: 0
@@ -4031,6 +4077,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _testBullet: {fileID: 4263428522901960493, guid: 70938663831ef274fab99d310ee204d0, type: 3}
+  _muzzleFire: {fileID: 100006, guid: f47cb9d88f4bc6c4bb7441e962c2c1a5, type: 3}
   _fromShootPoint: {fileID: 362740896}
 --- !u!137 &3756533395066712639
 SkinnedMeshRenderer:
