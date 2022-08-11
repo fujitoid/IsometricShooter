@@ -48,8 +48,6 @@ namespace Shooter.Runtime.Animations
                 PlayMoveAnimation();
             else
                 PlayRotateAnimation();
-
-            Debug.Log(_inputReciver.GetVelocity().magnitude);
         }
 
         private void PlayRotateAnimation()
